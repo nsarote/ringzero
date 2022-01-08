@@ -1,0 +1,17 @@
+
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    password:
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /v2/api-docs/swagger.json
+
+user:
+  random:
+    api: https://randomuser.me/api/
+  cacheSeedInMinute: 10

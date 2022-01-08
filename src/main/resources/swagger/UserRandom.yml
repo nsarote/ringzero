@@ -1,0 +1,205 @@
+openapi: 3.0.0
+info:
+  title: UserRandom
+  version: '1.0'
+  description: User Random API
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/users/{seed}':
+    parameters:
+      - schema:
+          type: string
+        name: seed
+        in: path
+        required: true
+    get:
+      summary: Get User Info by Seed
+      tags: []
+      responses:
+        '200':
+          description: User Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '404':
+          description: User Not Found
+      operationId: getUserBySeed
+      description: Retrieve the information of the user with the matching seed.
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ''
+      x-examples:
+        Alice Smith:
+          id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: '1997-10-31'
+          emailVerified: true
+          signUpDate: '2019-08-24'
+      properties:
+        gender:
+          type: string
+        name:
+          $ref: '#/components/schemas/Name'
+        location:
+          $ref: '#/components/schemas/Location'
+        email:
+          type: string
+        login:
+          $ref: '#/components/schemas/Login'
+        dob:
+          $ref: '#/components/schemas/Dob'
+        registered:
+          $ref: '#/components/schemas/Registered'
+        phone:
+          type: string
+        cell:
+          type: string
+        id:
+          $ref: '#/components/schemas/ID'
+        picture:
+          $ref: '#/components/schemas/Picture'
+        nat:
+          type: string
+    Name:
+      title: Name
+      type: object
+      properties:
+        title:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+    Location:
+      title: Location
+      type: object
+      properties:
+        street:
+          $ref: '#/components/schemas/Street'
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        postcode:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        timezone:
+          $ref: '#/components/schemas/Timezone'
+    Coordinates:
+      title: Coordinates
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+    Timezone:
+      title: Timezone
+      type: object
+      properties:
+        offset:
+          type: string
+        description:
+          type: string
+    Street:
+      title: Street
+      type: object
+      properties:
+        number:
+          type: integer
+        name:
+          type: string
+    Result:
+      title: Result
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        info:
+          $ref: '#/components/schemas/Info'
+    Info:
+      title: Info
+      type: object
+      properties:
+        seed:
+          type: string
+        results:
+          type: integer
+        page:
+          type: integer
+        version:
+          type: string
+    Login:
+      title: Login
+      type: object
+      properties:
+        uuid:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        salt:
+          type: string
+        md5:
+          type: string
+        sha1:
+          type: string
+        sha256:
+          type: string
+    Dob:
+      title: Dob
+      type: object
+      properties:
+        date:
+          type: string
+        age:
+          type: integer
+    Registered:
+      title: Registered
+      type: object
+      properties:
+        date:
+          type: string
+        age:
+          type: integer
+    ID:
+      title: ID
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Picture:
+      title: Picture
+      type: object
+      properties:
+        large:
+          type: string
+        medium:
+          type: string
+        thumbnail:
+          type: string
