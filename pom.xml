@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <jarfile.finalName>app</jarfile.finalName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <version.openapi-generator>5.0.0</version.openapi-generator>
@@ -125,6 +126,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <finalName>${jarfile.finalName}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
